@@ -3,16 +3,22 @@ use rand::RngCore;
 use crate::world::World;
 
 pub struct Simulation {
-    world: World,
+    _world: World,
 }
 
 impl Simulation {
     pub fn world(&self) -> &World {
-        &self.world
+        &self._world
     }
+
     pub fn random(rng: &mut dyn RngCore) -> Self {
         Self {
-            world: World::random(rng),
+            _world: World::random(rng),
         }
+    }
+
+    pub fn step(&mut self, rng: &mut dyn RngCore) {
+        self._world.process_movements();
+        self._world.process_collisions(rng);
     }
 }
