@@ -1,8 +1,10 @@
+use std::panic;
+
 use lib_simulation as sim;
 use rand::{prelude::ThreadRng, thread_rng, Rng};
 use serde::Serialize;
 use wasm_bindgen::prelude::*;
-use web_sys::console;
+// use web_sys::console;
 
 #[wasm_bindgen]
 pub struct Simulation {
@@ -14,6 +16,7 @@ pub struct Simulation {
 impl Simulation {
     #[wasm_bindgen(constructor)]
     pub fn new() -> Self {
+        panic::set_hook(Box::new(console_error_panic_hook::hook));
         let mut rng = thread_rng();
         let sim = sim::Simulation::random(&mut rng);
 
@@ -47,7 +50,7 @@ impl From<&sim::Animal> for Animal {
         Self {
             x: animal.position().x,
             y: animal.position().y,
-            rotation: animal.rotation().angle(),
+            rotation: animal.get_rotation().angle(),
         }
     }
 }
@@ -81,25 +84,3 @@ impl From<&sim::Food> for Food {
         }
     }
 }
-
-// #[wasm_bindgen]
-// extern "C" {
-//     // Use `js_namespace` here to bind `console.log(..)` instead of just
-//     // `log(..)`
-//     #[wasm_bindgen(js_namespace = console)]
-//     fn log(s: &str);
-
-//     // The `console.log` is quite polymorphic, so we can bind it with multiple
-//     // signatures. Note that we need to use `js_name` to ensure we always call
-//     // `log` in JS.
-//     #[wasm_bindgen(js_namespace = console, js_name = log)]
-//     fn log_u32(a: u32);
-
-//     // Multiple arguments too!
-//     #[wasm_bindgen(js_namespace = console, js_name = log)]
-//     fn log_many(a: &str, b: &str);
-// }
-
-// macro_rules! console_log {
-//     ($($t:tt)*) => (log(&format_args!($($t)*).to_string()))
-// }

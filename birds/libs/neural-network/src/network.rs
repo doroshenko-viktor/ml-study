@@ -1,17 +1,18 @@
 use crate::{layer::Layer, LayerTopology};
 
+#[derive(Debug)]
 pub struct Network {
-    layers: Vec<Layer>,
+    _layers: Vec<Layer>,
 }
 
 impl Network {
-    fn propagate(&self, inputs: Vec<f32>) -> Vec<f32> {
-        self.layers
+    pub fn propagate(&self, inputs: Vec<f32>) -> Vec<f32> {
+        self._layers
             .iter()
             .fold(inputs, |inputs, layer| layer.propagate(&inputs))
     }
 
-    fn random(layers: &[LayerTopology]) -> Self {
+    pub fn random(layers: &[LayerTopology]) -> Self {
         assert!(layers.len() > 1);
 
         let build_layers = layers
@@ -20,7 +21,7 @@ impl Network {
             .collect();
 
         Self {
-            layers: build_layers,
+            _layers: build_layers,
         }
     }
 }

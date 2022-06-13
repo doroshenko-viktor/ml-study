@@ -1,5 +1,6 @@
 use rand::Rng;
 
+#[derive(Debug)]
 pub struct Neuron {
     bias: f32,
     weights: Vec<f32>,

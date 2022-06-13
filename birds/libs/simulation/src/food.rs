@@ -7,6 +7,12 @@ pub struct Food {
 }
 
 impl Food {
+    pub fn new(position: Point2<f32>) -> Self {
+        Food {
+            _position: position,
+        }
+    }
+
     pub fn get_position(&self) -> &Point2<f32> {
         &self._position
     }
