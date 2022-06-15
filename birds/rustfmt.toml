@@ -1,0 +1,12 @@
+use_small_heuristics = "Default"
+chain_width = 40
+fn_args_layout = "Tall"
+fn_call_width = 40
+tab_spaces = 2
+hard_tabs = false
+match_arm_leading_pipes = "Never"
+match_block_trailing_comma = false
+max_width = 80
+newline_style = "Auto"
+reorder_imports = true
+reorder_modules = true

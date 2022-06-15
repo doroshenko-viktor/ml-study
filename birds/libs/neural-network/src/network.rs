@@ -17,7 +17,7 @@ impl Network {
 
         let build_layers = layers
             .windows(2)
-            .map(|layers| Layer::random(layers[0].neurons, layers[0].neurons))
+            .map(|layers| Layer::random(layers[0].neurons, layers[1].neurons))
             .collect();
 
         Self {

@@ -16,4 +16,3 @@ const SPEED_MIN: f32 = 0.001;
 const SPEED_MAX: f32 = 0.005;
 const SPEED_ACCEL: f32 = 0.2;
 const ROTATION_ACCEL: f32 = FRAC_PI_2;
-
