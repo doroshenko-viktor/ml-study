@@ -32,6 +32,17 @@ impl Simulation {
     }
   }
 
+  pub fn train(&mut self) -> String {
+    let stats = self._sim.train(&mut self._rng);
+
+    format!(
+      "min={:.2}, max={:.2}, avg={:.2}",
+      stats.min_fitness(),
+      stats.max_fitness(),
+      stats.avg_fitness()
+    )
+  }
+
   pub fn world(&self) -> JsValue {
     let world = World::from(self._sim.world());
     let x = JsValue::from_serde(&world).unwrap();

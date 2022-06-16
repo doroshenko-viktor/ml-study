@@ -7,3 +7,10 @@ version = "0.1.0"
 
 [dependencies]
 rand = "0.8.5"
+wasm-bindgen = {version = "0.2", features = ["serde-serialize"]}
+
+[dependencies.web-sys]
+features = [
+  'console',
+]
+version = "0.3.57"

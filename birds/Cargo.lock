@@ -84,6 +84,8 @@ name = "lib-genetic-algorithm"
 version = "0.1.0"
 dependencies = [
  "rand",
+ "wasm-bindgen",
+ "web-sys",
 ]
 
 [[package]]
@@ -97,6 +99,7 @@ dependencies = [
 name = "lib-simulation"
 version = "0.1.0"
 dependencies = [
+ "lib-genetic-algorithm",
  "lib-neural-network",
  "nalgebra",
  "rand",

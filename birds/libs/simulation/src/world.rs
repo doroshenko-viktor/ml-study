@@ -24,6 +24,10 @@ impl World {
     &self._animals
   }
 
+  pub fn set_animals(&mut self, value: Vec<Animal>) {
+    self._animals = value
+  }
+
   pub fn get_foods(&self) -> &[Food] {
     &self._foods
   }
@@ -43,6 +47,12 @@ impl World {
     Self {
       _animals: animals,
       _foods: foods,
+    }
+  }
+
+  pub fn restart_foods(&mut self, rng: &mut dyn RngCore) {
+    for food in &mut self._foods {
+      food.set_position(rng.gen());
     }
   }
 
@@ -75,12 +85,13 @@ impl World {
   }
 
   pub fn process_collisions(&mut self, rng: &mut dyn RngCore) {
-    for animal in self._animals.iter() {
+    for animal in self._animals.iter_mut() {
       for food in self._foods.iter_mut() {
         let distance =
           nalgebra::distance(animal.position(), food.get_position());
 
         if distance <= 0.01 {
+          animal.increase_satiation(1);
           food.set_position(rng.gen());
         }
       }

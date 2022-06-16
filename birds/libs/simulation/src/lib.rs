@@ -1,4 +1,6 @@
 mod animal;
+mod animal_individual;
+mod brain;
 mod eye;
 mod food;
 mod simulation;
@@ -16,3 +18,4 @@ const SPEED_MIN: f32 = 0.001;
 const SPEED_MAX: f32 = 0.005;
 const SPEED_ACCEL: f32 = 0.2;
 const ROTATION_ACCEL: f32 = FRAC_PI_2;
+const GENERATION_LENGTH: usize = 2500;
